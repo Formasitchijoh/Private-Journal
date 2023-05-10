@@ -384,6 +384,38 @@
       background-color: #ffecec;
   
     }
+    .main-modal {
+        width: fit-content;
+        height: fit-content;
+        margin-top: 150px;
+        position: absolute;
+        margin-left: 100px;
+        top: 0;
+        left: 0;
+        border: 2px solid black;
+        background: transparent;
+        opacity: 0.9;
+        background-color: #1a202c;
+        color: white;
+       font-weight: 500;
+       
+      }
+    
+      .modal {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 100px;
+    
+      }
+      .modal button{
+        width: 5%;
+        height: 50px;
+      }
+      .driver{
+        width: 100%;
+        height: 100%;
+      }
     
   }
   
@@ -420,7 +452,7 @@
 
   }
   .modal button{
-    width: 20%;
+    width: 30%;
     height: 50px;
   }
   .driver{
