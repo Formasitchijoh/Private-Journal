@@ -179,7 +179,7 @@
   label {
     font-weight: bold;
     display: flex;
-    font-size: 10px;
+    font-size: 30px;
 
   }
   
@@ -292,7 +292,7 @@
     max-height: fit-content;
     background-color: #fff2f2;
     padding: 5px;
-    font-size: 20px;
+    font-size: 50px;
   }
  .radio{
   display: flex;
