@@ -120,6 +120,10 @@
     margin-top: 5px;
     
   }
+  .error{
+    color: #e53e3e;
+    font-size: 10px;
+  }
   .header-text .opp{
     margin-top: 10px;
     display: block;
