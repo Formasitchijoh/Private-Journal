@@ -339,12 +339,13 @@
   
   @media screen and (min-width:700px) { 
     .formik-container{
-      max-width: 50%;
+      max-width: 60%;
+      padding: 5px;
       display: block;
       float: right;
       float: right;
       margin: 20px;
-      margin-right: 200px;
+      margin-right: 50px;
       background-color: #faf8f8;
     }
     .driver {
@@ -370,16 +371,19 @@
       position:absolute;
       bottom: 0;
       top: 80%;
-      width: 40%;
-      height: 40%;
+      width: 30%;
+      height: 30%;
       margin-top: 50px;
-      margin-left: 50px;
+      margin-left: 100px;
       border-style:none ;
+      border-left: #e2e8f0;
     }
     
     .app-div{
+      width: 80%;
       height: 80%;
       display: flex;
+      margin-left: 100px;
       justify-content: space-around;
       background-color: #ffecec;
   
