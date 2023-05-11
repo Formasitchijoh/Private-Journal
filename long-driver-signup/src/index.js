@@ -73,10 +73,10 @@ const Welcome = () =>{
         <>
          <div className='header-text'>
         {/* <h5>Become a driver</h5> */}
-        <button>Sign up</button>
+        <a className='signup-link' href='#'>Sign Up to Drive</a>
      </div>
-     <div className='opp'>
-     <h3>Opportunity is<br/>everywhere</h3>
+     <div >
+     <h3 className='opp'>Opportunity is<br/>everywhere</h3>
      </div>
     
      
@@ -234,13 +234,13 @@ const SignupForm = () => {
                 Privacy Policy  </i></a></p>
                    <p>I also agree tht Uber or the representation may  contact me by email, ohome or SMS(Incuding by automtic means) at the addresses or number i provided including for mrketing purpose</p>
                    <MyCheckbox name="acceptedTerms">
-                     I accept the terme and conditions
+                      I accept the terms and conditions
                    </MyCheckbox>
                     </div> 
                   
 
                <button type="submit"  >Sign up to drive</button>
-               <p>Already have an account? <a href='#'>Sign Up</a></p>
+               <p className='have-account'>Already have an account? <a href='#'>Sign Up</a></p>
              </Form>
          </Formik>
       {isSummit ? ( <ModalPage
@@ -263,7 +263,7 @@ const SignupForm = () => {
         <div className='left-div'>
            <div className='opportunity'>
             <h3>Opportunity is <br/>everywhere</h3>
-            <p>Make the most of your time on the road on the platform<br/> with the most of active riders</p>
+            <p>Make the most of your time on the road on<br/> the platform with the most of active riders</p>
            </div>
             <img src={images} alt='capture' className='image'/>
     
