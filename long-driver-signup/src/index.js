@@ -184,7 +184,7 @@ const SignupForm = () => {
                label="First Name"
                name="firstName"
                type="text"
-               placeholder="Jane"
+            //    placeholder="Jane"
                
                />
 
@@ -192,14 +192,14 @@ const SignupForm = () => {
                label="Last Name"
                name="lastName"
                type="text"
-               placeholder="Doe"
+            //    placeholder="Doe"
                
                />    
                   <MyTextInput
                   label="Email Address"
                   name="email"
                   type="email"
-                  placeholder="jane@formik.com"
+                //   placeholder="jane@formik.com"
                   ></MyTextInput>
                   <MyTextInput
                   label='PassWord'
