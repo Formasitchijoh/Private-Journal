@@ -82,14 +82,16 @@
     border-radius: 5px;
   }
 
-  .passwd{ 
-    padding: 0.65rem 0.5rem;
-    font-size: 0.8rem;
-    max-width: 100rem;
-    border: 2px solid #d4eefd;
-    border-radius: 5px;
-
-  }
+ input[type="password"]{
+  padding: 0.2rem 0.1rem;
+  font-size: 0.8rem;
+  width: 100%;
+  border: 2px solid #d4eefd;
+  border-radius: 5px;
+  border-right: #cbd5e0;
+  border-top-right-radius:#cbd5e0 ;
+  border-bottom-right-radius: #cbd5e0;
+ }
   
  
 
@@ -99,12 +101,12 @@
   .formik-container{ 
     display: block;
    align-content: center;
-   justify-content: center;
+    justify-content: center;
     max-width: 100%;
     max-height: fit-content;
-    background-color: #ffdcdc;
-    padding: 50px;
+    background-color: #fff3f3;
     font-size: 20px;
+  padding: 20px;
   }
  .radio{
   display: flex;
@@ -154,6 +156,7 @@
     border-style: none;
 
   }
+ 
   
   
   input:invalid,
@@ -162,6 +165,16 @@
     border: 2px solid #ff7d87;
     box-shadow: none;
   }
+  .eye{
+    /* width: 20%;
+    height: 20%; */
+    /* float: right; 
+    width: 3%;
+    height: 5%;
+    position: absolute; */
+  
+  }
+
   
   .main-modal {
     width: 80%;
@@ -219,7 +232,8 @@
       float: right;
       margin: 20px;
       margin-right: 50px;
-      background-color: #faf8f8;
+      background-color: #ffffff;
+      padding: 20px;
     }
     .driver {
       display: none;
@@ -231,7 +245,7 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-
+    
     /* I learned that when you want to manipulate a particular
      component on the DOM using css make sure to give it it's
       perculier name else if it is found in another component
@@ -242,7 +256,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: #fff0f0;
+      background-color: #fff3f3;
+      margin-left: 20px;
     }
     .left-div .opportunity{
       position: absolute;
@@ -255,20 +270,22 @@
       bottom: 0;
       top: 60%;
       width: 30%;
-      height: 30%;
+      height: 50%;
       margin-top: 50px;
-      margin-left: 100px;
+      margin-left: 30px;
       border-style:none ;
       border-left: #e2e8f0;
+      border-right: #2a4365;
     }
     
     .app-div{
       width: 80%;
-      height: 80%;
+      height: 60%;
       display: flex;
       margin-left: 100px;
       justify-content: space-around;
-      background-color: #fff0f0;
+      background-color: #fff3f3;
+      border-radius: 20px;
   
     }
     .main-modal {
@@ -294,6 +311,7 @@
   input[type="email"],
   input[type="text"],
   input[type="number"],
+  input[type="password"]
   textarea,
   select {
     width: 400px;

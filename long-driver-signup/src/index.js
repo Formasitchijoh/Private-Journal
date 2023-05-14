@@ -5,22 +5,37 @@ import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage,useField, useFormik} from "formik";
 import * as Yup from 'yup'
 import "./styles.css";
-import images from './image.png'
+import cap from './Capture.JPG'
+import eye from './eye.png'
+import hideeye from './eye-1.png'
 
-const MyTextInput = ({label, ...props}) =>{
+const MyTextInput = ({label,  ...props}) =>{
     
     const [field, meta] = useField(props);
     return (
         <div className='container'>
         <label htmlFor={props.id || props.name} className='label'>{label}</label>
-        <input className='text-input' {...field} {...props} />
+        <input className='text-input' {...field} {...props}/>
         {meta.touched && meta.error ?
          (<div className='error'>{meta.error}</div>):null}
 
         </div>
     );
 };
+const MyPasswordInput = ({label, isvisible, ...props}) =>{
+    
+    const [field, meta] = useField(props);
+    return (
+        <div className='container'>
+        <label htmlFor={props.id || props.name} className='label'>{label}</label>
+        <input className='text-input' {...field} {...props}/>
+        {/* {isvisible?(<img className='eye' src={eye} alt=""/>): (<img src={hideeye} alt=""/>)} */}
+        {meta.touched && meta.error ?
+         (<div className='error'>{meta.error}</div>):null}
 
+        </div>
+    );
+};
 const MyRadioBox = ({label, ...props}) => { 
     const [field, meta] = useField({...props, type:"radio"});
     return ( 
@@ -85,89 +100,66 @@ const Welcome = () =>{
 } 
 
 
-const ModalPage = ({setisShow, ...props}) => { 
-         
-    return (
-        <div className='main-modal'>
-             <div>
-
-                <p>FirstName: {props.firstName}</p>
-                <p>LastName: {props.lastName}</p>
-                <p>Email: {props.email}</p>
-                <p>PassWord: {props.origin}</p>
-                <p>Origin: {props.inviteCode}</p>
-                <p>inviteCode: {props.password}</p>
-
-                </div>
-            <div className='modal'>
-                <button type="reset" className='confirm' >Confirm</button>
-                <button className='Edit' onClick={()=> {
-                    setisShow(false)
-                }}>Edit</button>
-            </div>
-        </div>
-    )
-
-}
-
 //main Component
 const SignupForm = () => {  
 
     //defined states
     const [isShow, setisShow] = useState(false);
      const [initialValues, setinitialValues]  = useState({
-        email:"" ,
         firstName:"",
-         lastName:"",
+        lastName:"",
+        email:"" ,
          password:'',
          origin:'',
          inviteCode:""
+        
       });
-    
+const [isvisible, setisvisible] = useState("password") 
       //Formik methods 
-const onSubmit = (values) => {
-    alert(values.firstName);
+const onSubmit = (values) => { 
+    alert(values.car)
     setisShow(true)
     setinitialValues(values)
 }
 const validationSchema =
-    Yup.object({    
+    Yup.object({
         firstName:Yup.string() .max(15,"Must be 15 characters or less").required("Required"),
         lastName:Yup.string().max(20,"Must be 20 words or less") .required('Required'),
         email:Yup.string().email("Inavlid email address").required("required"),
-        password:Yup.string().required('Required'),
+        password:Yup.string()
+        .matches(/(?=.*[a-z])(?=.*[A-Z])\w+/, "Password ahould contain at least one uppercase and lowercase character")
+        .matches(/\d/, "Password should contain at least one number")
+        .matches(/[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/, "Password should contain at least one special character")
+        .required('Required'),
         origin:Yup.string().required('Required'),
         inviteCode:Yup.string().max(5, 'Must be 5 characters').required('Required'),
     })
 
 
 //Event handlers
-const handleConfirm = (onSubmitProps) => {
-    setisShow(false);
-    alert("you have sucecessfully registered");
-    onSubmitProps.resetForm();
 
-  };
+
     return( 
         <div className='driver-image'>
         <div className='formik-container'> 
         <Welcome />  
         <div>
-            <img src={images} alt='capture' className='driver'/>
+            <img src={cap} alt='capture' className='driver'/>
         </div>
         <Formik initialValues={initialValues}  onSubmit={onSubmit} validationSchema={validationSchema}>
         {(formik) => (
          <Form>
          <div style={{display:"flex",marginTop:"20px", gap:"30px"}}>
-         <MyRadioBox  label="I have a car" name="car"  type="radio" />
+         <MyRadioBox  label="I have a car"  name="car"  type="radio" />
          <MyRadioBox label="I need a car" name="car"  type="radio" />
          </div>
       <MyTextInput label="First Name" name="firstName" type="text" />
       <MyTextInput label="Last Name" name="lastName" type="text"  />    
-      <MyTextInput label="Email Address" name="email" type="email" />
-       <MyTextInput label='PassWord' name='password' type='text' />
+      <MyTextInput label="Email Address" name="email" type="email" /> 
+       <MyPasswordInput label='PassWord' name='password' type={isvisible} className="password"/>
        <MyTextInput label="Origin" name='origin' type='text' />
        <MyTextInput label='Invitation Code' name='inviteCode' type='text' />
+
        <div className='agreement'>
        <p style={{marginTop:"30px"}}>By proceeding I agree to UBer's <a href='#'><i style={{color:"blue"}}>Terms of Use</i> </a> and acknowledge That I have Read the <a href='#'><i style={{color:"blue"}}>
        Privacy Policy  </i></a></p>
@@ -181,6 +173,7 @@ const handleConfirm = (onSubmitProps) => {
       
       {isShow ? ( <div className='main-modal'>
              <div>
+                {/* <p>Car Status:{initialValues.radioButton}</p> */}
                 <p>FirstName: {initialValues.firstName}</p>
                 <p>LastName: {initialValues.lastName}</p>
                 <p>Email: {initialValues.email}</p>
@@ -216,10 +209,10 @@ const handleConfirm = (onSubmitProps) => {
 
         <div className='left-div'>
            <div className='opportunity'>
-            <h3>Opportunity is <br/>everywhere</h3>
+            <h1>Opportunity is <br/>everywhere</h1>
             <p>Make the most of your time on the road on<br/> the platform with the most of active riders</p>
            </div>
-            <img src={images} alt='capture' className='image'/>
+            <img src={cap} alt='capture' className='image'/>
     
         </div>
     )
