@@ -132,11 +132,7 @@ const handleShowPassword =() => {
     setisvisible("password")
 
 }
-const handleRadioInput =(e) =>{ 
-    alert(e.value);
-     setradioInput(e.value);
-    
-}
+
       //Formik methods 
 const onSubmit = (values) => { 
     alert(values.car)
@@ -171,8 +167,8 @@ const validationSchema =
         {(formik) => (
          <Form>
          <div style={{display:"flex",marginTop:"20px", gap:"30px"}}>
-         <MyRadioBox  label="I have a car"  name="car"  type="radio"  setradioInput={setradioInput} />
-         <MyRadioBox label="I need a car" name="car"  type="radio" setradioInput={setradioInput}  />
+         <MyRadioBox  label="I have a car"  name="car"  type="radio"   />
+         <MyRadioBox label="I need a car" name="car"  type="radio"   />
          </div>
       <MyTextInput label="First Name" name="firstName" type="text" />
       <MyTextInput label="Last Name" name="lastName" type="text"  />    
