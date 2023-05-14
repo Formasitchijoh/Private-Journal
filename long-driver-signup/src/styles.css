@@ -257,7 +257,7 @@
       justify-content: center;
       align-items: center;
       background-color: #fff3f3;
-      margin-left: 20px;
+      margin-left: 100px;
     }
     .left-div .opportunity{
       position: absolute;
@@ -268,18 +268,18 @@
     .left-div .image{
       position:absolute;
       bottom: 0;
-      top: 60%;
+      top: 73%;
       width: 30%;
       height: 50%;
-      margin-top: 50px;
-      margin-left: 30px;
+      margin-top: 100px;
+      margin-left: 40px;
       border-style:none ;
       border-left: #e2e8f0;
       border-right: #2a4365;
     }
     
     .app-div{
-      width: 80%;
+      width: 70%;
       height: 70%;
       display: flex;
       margin-left: 100px;
