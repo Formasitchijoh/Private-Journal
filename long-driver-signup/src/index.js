@@ -135,7 +135,6 @@ const handleShowPassword =() => {
 
       //Formik methods 
 const onSubmit = (values) => { 
-    alert(values.car)
     setisShow(true)
     setinitialValues(values)
 }
