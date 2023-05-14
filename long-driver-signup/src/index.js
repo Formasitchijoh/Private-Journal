@@ -2,7 +2,7 @@
 import  React from 'react'
 import  ReactDOM from 'react-dom';
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage,useField} from "formik";
+import { Formik, Form, Field, ErrorMessage,useField, useFormik} from "formik";
 import * as Yup from 'yup'
 import "./styles.css";
 import images from './image.png'
@@ -27,7 +27,7 @@ const MyRadioBox = ({label, ...props}) => {
       <div role="group"  className='radio'
       aria-labelledby="my-radio-group">
     <label htmlFor={props.id || props.name} className='label'>
-    <input className='radio-inpit' {...field} {...props}></input>
+    <input className='radio-input' {...field} {...props}></input>
         {label}</label>
             {meta.touched && meta.error ? (<div className='error'>{meta.error}</div>):null}
         </div>
@@ -72,7 +72,6 @@ const Welcome = () =>{
     return (
         <>
          <div className='header-text'>
-        {/* <h5>Become a driver</h5> */}
         <a className='signup-link' href='#'>Sign Up to Drive</a>
      </div>
      <div >
@@ -86,7 +85,7 @@ const Welcome = () =>{
 } 
 
 
-const ModalPage = ({setisSummit, ...props}) => { 
+const ModalPage = ({setisShow, ...props}) => { 
          
     return (
         <div className='main-modal'>
@@ -101,12 +100,13 @@ const ModalPage = ({setisSummit, ...props}) => {
 
                 </div>
             <div className='modal'>
-                <button className='confirm' onClick={() => {
+                <button type="reset" className='confirm' onClick={(onSubmitProps) => {
                     alert("Successfully submitted your form -:)")
-                    setisSummit(false)
+                    setisShow(false);
+                    onSubmitProps.resetForm();
                 }} >Confirm</button>
                 <button className='Edit' onClick={()=> {
-                    setisSummit(false)
+                    setisShow(false)
                 }}>Edit</button>
             </div>
         </div>
@@ -114,18 +114,54 @@ const ModalPage = ({setisSummit, ...props}) => {
 
 }
 
+
 const SignupForm = () => {  
-    const [isSummit, setisSummit] = useState(false);
+    const [isShow, setisShow] = useState(false);
     const [details, setdetails] = useState({email:"" ,
     firstName:"",
      lastName:"",
      password:'',
      origin:'',
-     inviteCode:""})
+     inviteCode:""});
+const [isConfirm, setisConfirm] = useState("reset")
 
-    return(
 
-         <div className='driver-image'>
+     const handleConfirm = (onSubmitProps) => { 
+        setisShow(false);
+    alert("Successfully submitted your form -:)")
+    onSubmitProps.resetForm();
+    
+    
+}
+
+const formik = useFormik({
+    initialValues:{
+        email:"" ,
+         firstName:"",
+          lastName:"",
+          password:'',
+          origin:'',
+          inviteCode:""
+       
+       },
+       validationSchema:Yup.object({    
+        firstName:Yup.string()
+        .max(15,"Must be 15 characters or less")
+        .required("Required"),
+
+        lastName:Yup.string()
+        .max(20,"Must be 20 words or less")
+        .required('Required'),
+
+        email:Yup.string().email("Inavlid email address").required("required"),
+        password:Yup.string().required('Required'),
+        origin:Yup.string().required('Required'),
+        inviteCode:Yup.string().max(5, 'Must be 5 characters').required('Required'),
+    }),
+})
+
+    return( 
+        <div className='driver-image'>
         <div className='formik-container'> 
         <Welcome />  
         <div>
@@ -155,80 +191,23 @@ const SignupForm = () => {
             origin:Yup.string().required('Required'),
             inviteCode:Yup.string().max(5, 'Must be 5 characters').required('Required'),
         })}
-        onSubmit={(values,{setSubmitting})=>{
-            // setTimeout(()=>{ 
-            //     alert(JSON.stringify(values,null,2));
-              
-               
-            // },400)
-            setSubmitting(false); 
-            setisSummit(true);
-                setdetails({...values})
-        }}>
-            <Form>
+        onSubmit ={(values, {resetForm,setSubmitting})=>{
+            setSubmitting(true); 
+            setisShow(true);
+            setdetails(values);
+        }}
+      > 
+       <Form>
                   <div style={{display:"flex",marginTop:"20px", gap:"30px"}}>
-                  <MyRadioBox 
-                  label="I have a car"
-                  name="car"
-                  type="radio"
-                  />
-                  <MyRadioBox 
-                  label="I need a car"
-                  name="car"
-                  type="radio"
-                  />
+                  <MyRadioBox  label="I have a car" name="car"  type="radio" />
+                  <MyRadioBox label="I need a car" name="car"  type="radio" />
                   </div>
-          
-               <MyTextInput
-               
-               label="First Name"
-               name="firstName"
-               type="text"
-            //    placeholder="Jane"
-               
-               />
-
-               <MyTextInput
-               label="Last Name"
-               name="lastName"
-               type="text"
-            //    placeholder="Doe"
-               
-               />    
-                  <MyTextInput
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                //   placeholder="jane@formik.com"
-                  ></MyTextInput>
-                  <MyTextInput
-                  label='PassWord'
-                  name='password'
-                  type='text'
-                  />
-
-                  <MyTextInput
-                  label="Origin"
-                  name='origin'
-                  type='text'
-                  />
-
-                  <MyTextInput 
-                  label='Invitation Code'
-                  name='inviteCode'
-                  type='text'
-                  />
-                 
-                
-                   {/* <MySelect
-                //   label="Job Type" name="jobType">
-                //     <option value="">Select a Job type</option>
-                //     <option value="designer">Designer</option>
-                //     <option value="developer">Developer </option>
-                //     <option value="product">Product Manager</option>
-                //     <option value="other">Other</option>
-
-                //   </MySelect> */}
+               <MyTextInput label="First Name" name="firstName" type="text" />
+               <MyTextInput label="Last Name" name="lastName" type="text"  />    
+               <MyTextInput label="Email Address" name="email" type="email" />
+                <MyTextInput label='PassWord' name='password' type='text' />
+                <MyTextInput label="Origin" name='origin' type='text' />
+                <MyTextInput label='Invitation Code' name='inviteCode' type='text' />
                 <div className='agreement'>
                 <p style={{marginTop:"30px"}}>By proceeding I agree to UBer's <a href='#'><i style={{color:"blue"}}>Terms of Use</i> </a> and acknowledge That I have Read the <a href='#'><i style={{color:"blue"}}>
                 Privacy Policy  </i></a></p>
@@ -237,19 +216,28 @@ const SignupForm = () => {
                       I accept the terms and conditions
                    </MyCheckbox>
                     </div> 
-                  
-
-               <button type="submit"  >Sign up to drive</button>
+               <button type="submit" >Sign up to drive</button>
                <p className='have-account'>Already have an account? <a href='#'>Sign Up</a></p>
-             </Form>
+
+               {isShow ? ( <div className='main-modal'>
+             <div>
+
+                <p>FirstName: {details.firstName}</p>
+                <p>LastName: {details.lastName}</p>
+                <p>Email: {details.email}</p>
+                <p>PassWord: {details.origin}</p>
+                <p>Origin: {details.inviteCode}</p>
+                <p>inviteCode: {details.password}</p>
+
+                </div>
+            <div className='modal'>
+            <button type="reset" className="confirm" >
+                  Confirm
+                </button> <button className='Edit' onClick={()=> { setisShow(false) }}>Edit</button>
+            </div>
+        </div>) : null }
+             </Form>          
          </Formik>
-      {isSummit ? ( <ModalPage
-      setisSummit={setisSummit}
-      isSummit={isSummit}
-      {...details}
-      />) : null }
-
-
          </div>
          </div>
         

@@ -67,19 +67,30 @@
   label {
     font-weight: bold;
     display: flex;
-    font-size: 15px;
+    font-size: 10px;
 
   }
   
   input[type="email"],
   input[type="text"],
-  input[type="number"] {
-    padding: 0.65rem 0.5rem;
+  input[type="number"] 
+  input[type="password"]{
+    padding: 0.2rem 0.1rem;
     font-size: 0.8rem;
     max-width: 100%;
     border: 2px solid #d4eefd;
     border-radius: 5px;
   }
+
+  .passwd{ 
+    padding: 0.65rem 0.5rem;
+    font-size: 0.8rem;
+    max-width: 100rem;
+    border: 2px solid #d4eefd;
+    border-radius: 5px;
+
+  }
+  
  
 
   /*-------------------- my stylings--------------------------------------- */
@@ -92,7 +103,7 @@
     max-width: 100%;
     max-height: fit-content;
     background-color: #ffdcdc;
-    padding: 8px;
+    padding: 50px;
     font-size: 20px;
   }
  .radio{
