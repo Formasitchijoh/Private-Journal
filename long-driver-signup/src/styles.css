@@ -163,24 +163,31 @@
     border: 2px solid #ff7d87;
     box-shadow: none;
   }
-  .pwd-eye {
+  .pwd-eye-hide {
     font-weight: 800;
-    margin-top: 4.5px;
+    margin-top: 12px;
     background-color: #fefefe;
     position: absolute;
     right: 15%;
-    width: 5%;
-    height: 3%;
-    border-radius: 50%;
+    width: 4%;
+    height: 2%;
+    border-radius: 5px;
 
   }
-  .pwd-eye img{
-    width: 150%;
-    height: 80%;
-    font-weight: bolder;
-    border-radius: 20%;
-  }
+ 
+  .pwd-eye-show {
+    font-weight: 800;
+    margin-top: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    position: absolute;
+    right: 15%;
+    width: 4%;
+    height: 2%;
+    border-radius: 5px;
 
+  }
   
   
   .main-modal {
@@ -280,9 +287,7 @@
       height: 50%;
       margin-top: 100px;
       margin-left: 40px;
-      border-style:none ;
-      border-left: #e2e8f0;
-      border-right: #2a4365;
+      border-radius: 6px;
     }
     
     .app-div{
@@ -298,40 +303,30 @@
 
     .pwd-eye-hide {
       font-weight: 800;
-      margin-top: 5.5px;
+      margin-top: 12px;
       background-color: #fefefe;
       position: absolute;
       right: 32%;
-      width: 3%;
-      height: 3%;
+      width: 2%;
+      height: 2%;
       border-radius: 5px;
 
     }
-    .pwd-eye-hide img{
-      width: 150%;
-      height: 160%;
-      font-weight: bolder;
-    }
+   
     .pwd-eye-show {
       font-weight: 800;
-      margin-top: 4.5px;
+      margin-top: 12px;
       align-items: center;
       justify-content: center;
       background-color: #ffffff;
       position: absolute;
       right: 32%;
-      width: 3%;
-      height: 3%;
+      width: 2%;
+      height: 2%;
       border-radius: 5px;
 
     }
-    .pwd-eye-show img{
-      width: 100%;
-      height: 80%;
-      font-weight: bolder;
-      border-radius: 20%;
-  
-    }
+    
     .main-modal {
       width: 50%;
       height: fit-content;

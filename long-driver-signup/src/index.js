@@ -5,11 +5,11 @@ import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage,useField, useFormik} from "formik";
 import * as Yup from 'yup'
 import "./styles.css";
-import cap from './Capture.JPG'
-import eye from './eye.png'
-import hideeye from './eye-1.png'
+import cap from './resource/Capture.JPG'
+import eye from './resource/eye.png'
+import hideeye from './resource/eye-1.png'
 
-const MyTextInput = ({label,  ...props}) =>{
+const MyTextInput = ({label, setradioInput,  ...props}) =>{
     
     const [field, meta] = useField(props);
     return (
@@ -31,13 +31,10 @@ const MyPasswordInput = ({label, isvisible, handleHidePassword,handleShowPasswor
         <input className='text-input' {...field} {...props}/>
        
         {isvisible ==="password"?(
-            <span className='pwd-eye-hide' onClick={handleHidePassword}>
-                <img className='eye' src={hideeye} alt=""/>
-            </span>
+            // <span className='pwd-eye-hide'>
+                <img  src={hideeye}  onClick={handleHidePassword} className='pwd-eye-hide' alt=""/>
         ): (
-            <span className='pwd-eye-show' onClick={handleShowPassword}>
-                <img src={eye} alt="" />
-            </span>
+                <img src={eye} alt=""  className='pwd-eye-show' onClick={handleShowPassword}/>
         )}
         {meta.touched && meta.error ?
          (<div className='error'>{meta.error}</div>):null}
@@ -124,6 +121,22 @@ const SignupForm = () => {
         
       });
 const [isvisible, setisvisible] = useState("password") 
+const [radioInput, setradioInput] = useState("")
+
+//Event handlers
+
+const handleHidePassword =() =>{ 
+    setisvisible("text")
+}
+const handleShowPassword =() => {
+    setisvisible("password")
+
+}
+const handleRadioInput =(e) =>{ 
+    alert(e.value);
+     setradioInput(e.value);
+    
+}
       //Formik methods 
 const onSubmit = (values) => { 
     alert(values.car)
@@ -145,16 +158,6 @@ const validationSchema =
     })
 
 
-//Event handlers
-
-const handleHidePassword =() =>{ 
-    setisvisible("text")
-    // setisvisible((isvisible) => (!isvisible))
-}
-const handleShowPassword =() => {
-    setisvisible("password")
-
-}
 
 
     return( 
@@ -168,8 +171,8 @@ const handleShowPassword =() => {
         {(formik) => (
          <Form>
          <div style={{display:"flex",marginTop:"20px", gap:"30px"}}>
-         <MyRadioBox  label="I have a car"  name="car"  type="radio" />
-         <MyRadioBox label="I need a car" name="car"  type="radio" />
+         <MyRadioBox  label="I have a car"  name="car"  type="radio"  setradioInput={setradioInput} />
+         <MyRadioBox label="I need a car" name="car"  type="radio" setradioInput={setradioInput}  />
          </div>
       <MyTextInput label="First Name" name="firstName" type="text" />
       <MyTextInput label="Last Name" name="lastName" type="text"  />    
@@ -191,7 +194,6 @@ const handleShowPassword =() => {
       
       {isShow ? ( <div className='main-modal'>
              <div>
-                {/* <p>Car Status:{initialValues.radioButton}</p> */}
                 <p>FirstName: {initialValues.firstName}</p>
                 <p>LastName: {initialValues.lastName}</p>
                 <p>Email: {initialValues.email}</p>
