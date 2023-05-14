@@ -270,7 +270,7 @@
       bottom: 0;
       top: 60%;
       width: 30%;
-      height: 20%;
+      height: 40%;
       margin-top: 50px;
       margin-left: 15px;
       border-style:none ;
@@ -280,7 +280,7 @@
     
     .app-div{
       width: 80%;
-      height: 60%;
+      height: 70%;
       display: flex;
       margin-left: 100px;
       justify-content: space-around;
