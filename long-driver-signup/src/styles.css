@@ -83,14 +83,12 @@
   }
 
  input[type="password"]{
-  padding: 0.2rem 0.1rem;
+  padding: 0.4rem 0.2rem;
   font-size: 0.8rem;
   width: 100%;
   border: 2px solid #d4eefd;
   border-radius: 5px;
-  border-right: #cbd5e0;
-  border-top-right-radius:#cbd5e0 ;
-  border-bottom-right-radius: #cbd5e0;
+ font-size: 200;
  }
   
  
@@ -165,16 +163,25 @@
     border: 2px solid #ff7d87;
     box-shadow: none;
   }
-  .eye{
-    /* width: 20%;
-    height: 20%; */
-    /* float: right; 
-    width: 3%;
-    height: 5%;
-    position: absolute; */
-  
+  .pwd-eye {
+    font-weight: 800;
+    margin-top: 4.5px;
+    background-color: #fefefe;
+    position: absolute;
+    right: 15%;
+    width: 5%;
+    height: 3%;
+    border-radius: 50%;
+
+  }
+  .pwd-eye img{
+    width: 150%;
+    height: 80%;
+    font-weight: bolder;
+    border-radius: 20%;
   }
 
+  
   
   .main-modal {
     width: 80%;
@@ -286,6 +293,43 @@
       justify-content: space-around;
       background-color: #fff3f3;
       border-radius: 20px;
+  
+    }
+
+    .pwd-eye-hide {
+      font-weight: 800;
+      margin-top: 5.5px;
+      background-color: #fefefe;
+      position: absolute;
+      right: 32%;
+      width: 3%;
+      height: 3%;
+      border-radius: 5px;
+
+    }
+    .pwd-eye-hide img{
+      width: 150%;
+      height: 160%;
+      font-weight: bolder;
+    }
+    .pwd-eye-show {
+      font-weight: 800;
+      margin-top: 4.5px;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      position: absolute;
+      right: 32%;
+      width: 3%;
+      height: 3%;
+      border-radius: 5px;
+
+    }
+    .pwd-eye-show img{
+      width: 100%;
+      height: 80%;
+      font-weight: bolder;
+      border-radius: 20%;
   
     }
     .main-modal {

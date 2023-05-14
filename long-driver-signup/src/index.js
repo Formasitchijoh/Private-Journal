@@ -22,14 +22,23 @@ const MyTextInput = ({label,  ...props}) =>{
         </div>
     );
 };
-const MyPasswordInput = ({label, isvisible, ...props}) =>{
+const MyPasswordInput = ({label, isvisible, handleHidePassword,handleShowPassword, ...props}) =>{
     
     const [field, meta] = useField(props);
     return (
         <div className='container'>
         <label htmlFor={props.id || props.name} className='label'>{label}</label>
         <input className='text-input' {...field} {...props}/>
-        {/* {isvisible?(<img className='eye' src={eye} alt=""/>): (<img src={hideeye} alt=""/>)} */}
+       
+        {isvisible ==="password"?(
+            <span className='pwd-eye-hide' onClick={handleHidePassword}>
+                <img className='eye' src={hideeye} alt=""/>
+            </span>
+        ): (
+            <span className='pwd-eye-show' onClick={handleShowPassword}>
+                <img src={eye} alt="" />
+            </span>
+        )}
         {meta.touched && meta.error ?
          (<div className='error'>{meta.error}</div>):null}
 
@@ -138,6 +147,15 @@ const validationSchema =
 
 //Event handlers
 
+const handleHidePassword =() =>{ 
+    setisvisible("text")
+    // setisvisible((isvisible) => (!isvisible))
+}
+const handleShowPassword =() => {
+    setisvisible("password")
+
+}
+
 
     return( 
         <div className='driver-image'>
@@ -156,7 +174,7 @@ const validationSchema =
       <MyTextInput label="First Name" name="firstName" type="text" />
       <MyTextInput label="Last Name" name="lastName" type="text"  />    
       <MyTextInput label="Email Address" name="email" type="email" /> 
-       <MyPasswordInput label='PassWord' name='password' type={isvisible} className="password"/>
+       <MyPasswordInput label='PassWord' name='password' type={isvisible} className="password" isvisible={isvisible} handleHidePassword={handleHidePassword} handleShowPassword={handleShowPassword}/>
        <MyTextInput label="Origin" name='origin' type='text' />
        <MyTextInput label='Invitation Code' name='inviteCode' type='text' />
 
